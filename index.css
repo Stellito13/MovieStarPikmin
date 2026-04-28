@@ -1,68 +1,114 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  background: #000;
+  overflow: hidden;
+}
+
+/* ── CONTENEUR PRINCIPAL : ratio 16:9 ── */
 #parent {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
+/* ── Toutes les images superposées ── */
 img.superpose {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* ── Fond ── */
+/* Fond */
 #img_1 {
-  z-index: 10;
+  z-index: 1;
+  object-fit: cover;
 }
 
-/* ── Cadre MSP ── */
+/* Cadre MSP */
 #img_2 {
-  z-index: 11;
+  z-index: 2;
+  object-fit: contain;
 }
 
-/* ── Pikmin : gauche, ~1.5% du bord, ~21% du haut ── */
+/* Pikmin */
 #img_3 {
-  z-index: 12;
+  z-index: 3;
+  object-fit: contain;
   width: 16%;
-  margin-left: 2%; 
-  margin-top: 15%;
+  height: auto;
+  top: 20%;
+  left: 2%;
+  width: auto;
+  height: 65%;
 }
 
-/* ── Icônes : toutes à ~1.5% du haut, taille 4% de la largeur ── */
-#img_4,
-#img_5,
-#img_6,
-#img_7,
-#img_8,
-#img_9,
-#img_10 {
-  width: 4%;
-  margin-top: 1.5%;
+/* ── NAVBAR ── */
+#navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 11%;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  padding: 0 1.5%;
+
+  /* fond dégradé sombre pour que la barre soit toujours lisible */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.45) 70%,
+    transparent 100%
+  );
 }
 
-/* PictoFriend */
-#img_4  { z-index: 13; margin-left: 34%; }
+/* ── Slot logo (gauche) ── */
+#navbar .logo-slot {
+  width: 13%;
+  flex-shrink: 0;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-slot img {
+  height: 300%;
+  margin-top: 25%;
+  width: auto;
+  object-fit: contain;
+}
 
-/* PictoTask */
-#img_5  { z-index: 14; margin-left: 41.5%; }
+/* ── Icônes (centre) ── */
+#navbar .icons {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5%;
+  height: 100%;
+}
 
-/* PictoProfil */
-#img_6  { z-index: 15; margin-left: 49%; }
+#navbar .icons img {
+  height: 70%;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.15s ease;
+}
 
-/* PictoMessage */
-#img_7  { z-index: 16; margin-left: 56.5%; }
-
-/* Pictoforum */
-#img_8  { z-index: 17; margin-left: 64%; }
-
-/* PictoYt */
-#img_9  { z-index: 18; margin-left: 71%; }
-
-/* PictoScore */
-#img_10 { z-index: 19; margin-left: 78.5%; }
+#navbar .icons img:hover {
+  transform: translateY(-15%) scale(1.2);
+  filter: drop-shadow(0 6px 16px rgba(220, 0, 183, 0.65));
+}
