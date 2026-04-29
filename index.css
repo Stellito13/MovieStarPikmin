@@ -9,14 +9,14 @@ body {
   overflow: hidden;
 }
 
-/* ── CONTENEUR PRINCIPAL : ratio 16:9 ── */
+/* ── CONTENEUR PRINCIPAL ── */
 #parent {
   position: relative;
   width: 100vw;
   height: 100vh;
 }
 
-/* ── Toutes les images superposées ── */
+/* ── Images superposées ── */
 img.superpose {
   position: absolute;
   top: 0;
@@ -26,53 +26,54 @@ img.superpose {
   object-fit: cover;
 }
 
-/* Fond */
-#img_1 {
-  z-index: 1;
-  object-fit: cover;
-}
+#img_1 { z-index: 1; object-fit: cover; }
 
-/* Cadre MSP */
-#img_2 {
-  z-index: 2;
-  object-fit: contain;
-}
+#img_2 { z-index: 2; object-fit: contain; }
 
-/* Pikmin */
+/* Pikmin — cliquable */
 #img_3 {
   z-index: 3;
   object-fit: contain;
-  width: 16%;
-  height: auto;
   top: 20%;
   left: 2%;
   width: auto;
   height: 65%;
+  cursor: pointer;
+}
+
+#img_4 {
+  z-index: 4;
+  object-fit: contain;
+  top: 3%;
+  left: 88%;
+  width: auto;
+  height: 20%;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.15s ease;
+}
+#img_4:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 6px 16px rgba(240, 197, 6, 0.65));
 }
 
 /* ── NAVBAR ── */
 #navbar {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 11%;
   z-index: 50;
-
   display: flex;
   align-items: center;
   padding: 0 1.5%;
-
-  /* fond dégradé sombre pour que la barre soit toujours lisible */
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.45) 70%,
+    rgba(0,0,0,0.72) 0%,
+    rgba(0,0,0,0.45) 70%,
     transparent 100%
   );
 }
 
-/* ── Slot logo (gauche) ── */
 #navbar .logo-slot {
   width: 13%;
   flex-shrink: 0;
@@ -88,27 +89,24 @@ img.superpose {
   object-fit: contain;
 }
 
-/* ── Icônes (centre) ── */
 #navbar .icons {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.5%;
+  gap: 4%;
   height: 100%;
 }
-
 #navbar .icons img {
   height: 70%;
   width: auto;
   object-fit: contain;
   cursor: pointer;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
               filter 0.15s ease;
 }
-
 #navbar .icons img:hover {
-  transform: translateY(-15%) scale(1.2);
+  transform: translateY(10%) scale(1.0);
   filter: drop-shadow(0 6px 16px rgba(220, 0, 183, 0.65));
 }
